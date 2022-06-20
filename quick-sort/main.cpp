@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 #include "../helpers/random.h"
 
 using namespace std;
@@ -23,7 +22,7 @@ void quickSort(T *array, size_t left, size_t right)
                 i++;
             while (array[j] > mid)
                 j--;
-            
+
             //Меням два элемента местами относительно среднего элемента
             if (i <= j)
                 swap(array[i++], array[j--]);
