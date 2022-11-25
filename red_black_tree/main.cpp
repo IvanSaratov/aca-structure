@@ -423,13 +423,13 @@ int main()
     rbtree tree;
     for (size_t i = 1; i <= 10; i++)
     {
-        tree.insert(i * 10);
+        tree.insert(i);
     }
 
     cout << "Прямой обход" << endl;
     tree.showInOrder();
-    cout << endl << "Удаляем элемент со значением 50" << endl;
-    tree.remove(50);
+    cout << endl << "Удаляем элемент со значением 1" << endl;
+    tree.remove(1);
     cout << "Прямой обход" << endl;
     tree.showInOrder();
     cout << endl;
