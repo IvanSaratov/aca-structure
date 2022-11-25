@@ -1,20 +1,22 @@
-#include <iostream>
+﻿#include <iostream>
+#include <Windows.h>
+#include <cstdio>
 
 using namespace std;
 
 struct node
 {
     size_t data;
-    node *left;
-    node *right;
+    node* left;
+    node* right;
 };
 
 class btree
 {
 private:
-    node *root;
+    node* root;
 
-    void cleanTree(node *leaf)
+    void cleanTree(node* leaf)
     {
         if (leaf != NULL)
         {
@@ -24,7 +26,7 @@ private:
         }
     };
 
-    void insert(size_t data, node *leaf)
+    void insert(size_t data, node* leaf)
     {
         if (data < leaf->data)
         {
@@ -50,7 +52,7 @@ private:
         }
     }
 
-    node *deleteLeaf(size_t data, node *leaf)
+    node* deleteLeaf(size_t data, node* leaf)
     {
         if (leaf == NULL)
         {
@@ -70,20 +72,20 @@ private:
 
         if (leaf->left == NULL)
         {
-            node *tmp = leaf->right;
+            node* tmp = leaf->right;
             delete leaf;
             return tmp;
         }
         else if (leaf->right == NULL)
         {
-            node *tmp = leaf->left;
+            node* tmp = leaf->left;
             delete leaf;
             return tmp;
         }
         else
         {
-            node *succParent = leaf;
-            node *succ = leaf->right;
+            node* succParent = leaf;
+            node* succ = leaf->right;
 
             while (succ->left != NULL)
             {
@@ -131,12 +133,12 @@ public:
         }
     };
 
-    node *search(size_t key)
+    node* search(size_t key)
     {
         return search(key, this->root);
     }
 
-    node *search(size_t key, node *leaf)
+    node* search(size_t key, node* leaf)
     {
         if (leaf == NULL)
             return NULL;
@@ -157,7 +159,7 @@ public:
     }
 
     //Прямой порядок обхода
-    void showPreOrder(node *leaf)
+    void showPreOrder(node* leaf)
     {
         if (leaf == NULL)
             return;
@@ -173,7 +175,7 @@ public:
     }
 
     //Симметричный обход
-    void showInOrder(node *leaf)
+    void showInOrder(node* leaf)
     {
         if (leaf != NULL)
         {
@@ -189,7 +191,7 @@ public:
     }
 
     //Обратный обход
-    void showPostOrder(node *leaf)
+    void showPostOrder(node* leaf)
     {
         if (leaf != NULL)
         {
@@ -206,7 +208,7 @@ public:
 
     // Return -1 if not found
     // Костыль
-    size_t findMin(node *leaf)
+    size_t findMin(node* leaf)
     {
         if (leaf == NULL)
             return -1;
@@ -223,7 +225,7 @@ public:
 
     // Return -1 if not found
     // Костыль
-    size_t findMax(node *leaf)
+    size_t findMax(node* leaf)
     {
         if (leaf == NULL)
             return -1;
@@ -246,18 +248,24 @@ public:
 
 int main()
 {
-    btree *tree = new btree();
+    SetConsoleOutputCP(1251);   // Устанавливаем кодировку для windows
+
+    btree* tree = new btree();
 
     for (size_t i = 1; i <= 10; i++)
         tree->insert(i);
 
+    cout << "Прямой обход" << endl;
     tree->showInOrder();
+    cout << endl << "Удаляем элемент со значение 4";
     tree->remove(4);
     cout << endl;
+    cout << "Прямой обход" << endl;
     tree->showInOrder();
     cout << endl;
+    cout << "Постфиксный обход" << endl;
     tree->showPostOrder();
-    cout << endl;
+    cout << endl << "Префиксный обход" << endl;
     tree->showPreOrder();
 
     return 0;
