@@ -8,26 +8,19 @@ using namespace std;
 vector<size_t> prefix_function(const string& s) {
     vector<size_t> pi(s.length(), 0);
 
-    for (size_t i = 1; i < s.length(); i++) {
-        size_t j = pi[i - 1];
-
-        while (j > 0 && s[i] != s[j]) {
-            j = pi[j - 1];
-        }
-
-        if (s[i] == s[j]) {
-            pi[i] = j + 1;
-        }
-        else {
-            pi[i] = j;
-        }
-    }
+    for (size_t i = 0; i < s.length(); ++i) {
+        for (size_t j = 0; j <= i; j++) {
+            if (s.substr(0, j) == s.substr(i - j + 1, j)) {
+                pi[i] = j;
+			}
+		}
+	}
 
     return pi;
 }
 
 int main() {
-	SetConsoleOutputCP(1251);   // Устанавливаем кодировку для windows
+    SetConsoleOutputCP(1251);   // Устанавливаем кодировку для windows
 
     string word, subword;
     cout << "Введите изначальную строку: ";
