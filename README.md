@@ -4,9 +4,8 @@
 
 * [Сортировка подсчетом](counting_sort/README.md)
 * [Поразрядная сортировка](radix_sort/README.md)
+* [Быстрая сортировка](quick_sort/README.md)
 
-
-* [Быстрая сортировка](quick-sort)
 * [Сортировка слиянием](merge-sort)
 * [Пирамидальная сортировка](heap-sort)
 
